@@ -86,7 +86,7 @@ protected override TreeNodeCollection GetTreeNodes(string id, FormDataCollection
 
 This results in the following tree:
 
-~[Hardcoded tree](images/tree2.png)
+![Hardcoded tree](images/tree2.png)
 
 The `CreateTreeNode` method I have used takes the following arguments:
 
@@ -153,7 +153,7 @@ Now that we have a basic implementation of our TreeController, we can almost sta
 custom pages and add some functionality to our custom section. But first, we need to register our tree
 as `SearchableTree` to have the search box above the tree also search in our section:
 
-~[Search](images/tree5.png)
+![Search](images/tree5.png)
 
 And we have to get our Dependency Injection working, so we can really start using some services and start
 talking to a database. And getting Entity Framework Core working inside Umbraco can be a bit of a hassle,
