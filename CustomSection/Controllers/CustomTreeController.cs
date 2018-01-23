@@ -23,8 +23,8 @@ namespace UmbracoCustomSection.App_Plugins.CustomSection.Controllers
             else if (id.Length == 1)
             {
                 collection.Add(CreateTreeNode($"{id}1", id, queryStrings, $"Item {id}1", "icon-trophy color-green", true));
-                collection.Add(CreateTreeNode($"{id}2", id, queryStrings, $"Item {id}1", "icon-trophy color-yellow", true));
-                collection.Add(CreateTreeNode($"{id}3", id, queryStrings, $"Item {id}1", "icon-trophy color-red", true));
+                collection.Add(CreateTreeNode($"{id}2", id, queryStrings, $"Item {id}2", "icon-trophy color-yellow", true));
+                collection.Add(CreateTreeNode($"{id}3", id, queryStrings, $"Item {id}3", "icon-trophy color-red", true));
             }
             else if (id.Length == 2)
             {
