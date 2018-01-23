@@ -3,9 +3,9 @@
 In order to add functionality your custom section, you can start by adding a custom tree. 
 You can create your own tree by creating a `CustomTreeController` derived from `TreeController`. 
 The TreeControllers are used by Umbraco to generate trees for each section, and have two methods
-which must be overridden. The TreeController is a bit of an oldy, and does not support anything 
+which must be overridden. The TreeController is a bit of an oldie, and does not support anything 
 `async`. This TreeController will probably be replaced by something better in Umbraco 8.x, but it
-will to do for now. The most simplistic implementation of `Controllers/CustomTreeController.cs` will
+will have to do for now. The most simplistic implementation of `Controllers/CustomTreeController.cs` will
 look something like this:
 
 ``` Csharp
@@ -54,7 +54,7 @@ The `GetTreeNodes` method is called everytime a user clicks on the little arrow 
 which the `id` argument contains the id of the corresponding tree node. The root node has `-1` as id,
 so it is easy to identify the root node. 
 
-I have hard coded some menu items to demonstrate this mechanic:
+I have hard coded some menu items to demonstrate this mechanism:
 
 ``` Csharp
 protected override TreeNodeCollection GetTreeNodes(string id, FormDataCollection queryStrings)
@@ -88,7 +88,7 @@ This results in the following tree:
 
 ~[Hardcoded tree](images/tree2.png)
 
-The used `CreateTreeNode` method takes the following arguments:
+The `CreateTreeNode` method I have used takes the following arguments:
 
 ``` Csharp
 CreateTreeNode(string id, string parentId, FormDataCollection queryStrings, string title, string icon, bool hasChildren);
@@ -105,7 +105,7 @@ CreateTreeNode(string id, string parentId, FormDataCollection queryStrings, stri
 ```
 
 This overload takes `routePath` as additional argument and is very important for the routing when using custom pages. 
-How this works is explained in the Custom Pages chapter. 
+How this works is explained in the Custom pages chapter. 
 
 The `GetMenuForNode` is called when the user clicks on the tree dots of a tree node, which opens a context menu with
 extra options. Since the current implementation returns an empty collection, the menu looks like this:
@@ -116,7 +116,7 @@ The way this method is used is quite similair to the `CreateTreeNodes` method, i
 opens the context menu, and the `id` argument will have the id of the corresponding tree node. There are some default 
 features which you can tap into:
 
-``` CSharp
+``` Csharp
 protected override MenuItemCollection GetMenuForNode(string id, FormDataCollection queryStrings)
 {
 	var collection = new MenuItemCollection();
