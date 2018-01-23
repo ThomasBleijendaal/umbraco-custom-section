@@ -142,6 +142,8 @@ protected override MenuItemCollection GetMenuForNode(string id, FormDataCollecti
 }
 ```
 
+![Hardcoded menu](images/tree4.png)
+
 As you can see, you can add completely custom `MenuItem`s, lauch custom dialogs, navigate to routes, or refresh
 the tree node list. There are quite a few `Action`s available, and you can create custom Actions aswell. The
 `NavigateToRoute` and `LaunchDialogView` are discussed in the Custom Pages chapter, as they required the same
