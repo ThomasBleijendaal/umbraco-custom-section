@@ -19,7 +19,7 @@ of Umbraco. So to start, do the following:
 1. Create empty ASP.NET (.NET Framework) project.
 2. Add UmbracoCms nuget package.
 3. Clone this repository into the App_Plugins folder. Let ModelsBuilder be.
-4. Run the installer.
+4. Run the installer and setup Umbraco.
 
 ### 2. Custom Umbraco changes
 
