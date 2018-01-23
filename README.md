@@ -1,2 +1,2 @@
 # Umbraco custom section
-Example custom section for Umbraco
+[Documentation can be found here](https://thomasbleijendaal.github.io/umbraco-custom-section/)
