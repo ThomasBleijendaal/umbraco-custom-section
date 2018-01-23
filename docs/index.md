@@ -30,6 +30,11 @@ are listed here:
 - None yet.
 
 
+### 3. Table of contents
+
+1. [Basics](basics.md)
+
+
 ## Sources used
 
 ### Custom section
