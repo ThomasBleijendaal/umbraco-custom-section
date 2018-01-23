@@ -32,14 +32,14 @@ are listed here:
 
 ## Sources used
 
-###Custom section
+### Custom section
 http://skrift.io/articles/archive/sections-and-trees-in-umbraco-7/
 https://nicbell.github.io/ucreate/icons.html
 
-###2FA login flow
+### 2FA login flow
 https://github.com/Offroadcode/Umbraco-2FA
 
-###ADFS
+### ADFS
 https://24days.in/umbraco-cms/2016/authenticating-with-ad-fs-and-identityextensions/
 https://our.umbraco.org/documentation/Reference/Security/
 https://our.umbraco.org/forum/extending-umbraco-and-using-the-api/79201-account-auto-linking-not-working-with-owin-ad-fsws-federation-authentication
