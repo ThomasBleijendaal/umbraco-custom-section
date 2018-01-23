@@ -3,7 +3,7 @@
 Let's start with the basics! Creating a Custom Section. We start with creating a
 folder in App_Plugins. In this folder add `CustomApplication.cs`.
 
-``` C#
+``` Csharp
 using Umbraco.Core;
 
 namespace UmbracoCustomSection.App_Plugins.CustomSection
@@ -34,7 +34,7 @@ and modify things at application start.
 
 To register a custom section to Umbraco, add the following in `CustomSection.cs`:
 
-``` C#
+``` Csharp
 using umbraco.businesslogic;
 using umbraco.interfaces;
 
@@ -68,11 +68,11 @@ and add the following to en.xml, and any other file, to the `<area alias="sectio
 <key alias="customSection">Custom Section</key>
 ```
 
-The backoffice should look like this now:
+After you build and restart the site, the backoffice should look like this now:
 
 ![Custom section with proper title](images/basics3.png)
 
 ## Next
 
-Now that we have a custom section and can allow users access to them using User Group configuration, 
-we should probably fill it with something usefull. Let's continue creating a [nice tree for our section](tree.md).
+Now that we have a custom section and can allow users to access it using User Group configuration, 
+we should probably fill the section with something useful. Let's continue creating a [nice tree for our section](tree.md).

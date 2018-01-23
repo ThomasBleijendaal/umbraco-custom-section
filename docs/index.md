@@ -21,19 +21,17 @@ of Umbraco. So to start, do the following:
 3. Clone this repository into the App_Plugins folder. Let ModelsBuilder be.
 4. Run the installer and setup Umbraco.
 
-### 2. Custom Umbraco changes
-
-I try to keep changes to the Umbraco installation to a minimum, and most
-changes are only in the .config-files or some translation files. All changes
-are listed here:
-
-- None yet.
-
-
-### 3. Table of contents
+### 2. Table of contents
 
 1. [Basics](basics.md)
-
+2. [Custom Tree](tree.md)
+3. Search
+4. Dependency Injection
+5. Dashboard
+6. Custom pages
+7. Multiple sections
+8. Very basic two factor authentication
+9. ADFS / Azure AD / Azure AD B2C
 
 ## Sources used
 
