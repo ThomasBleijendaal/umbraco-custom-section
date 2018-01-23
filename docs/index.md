@@ -38,6 +38,8 @@ of Umbraco. So to start, do the following:
 ### Custom section
 http://skrift.io/articles/archive/sections-and-trees-in-umbraco-7/
 https://nicbell.github.io/ucreate/icons.html
+http://www.enkelmedia.se/blogg/2013/11/22/creating-custom-sections-in-umbraco-7-part-1.aspx
+https://github.com/kgiszewski/LearnUmbraco7/tree/master/Chapter%2016%20-%20Custom%20Sections%2C%20Trees%20and%20Actions
 
 ### 2FA login flow
 https://github.com/Offroadcode/Umbraco-2FA
