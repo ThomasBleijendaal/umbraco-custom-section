@@ -103,7 +103,7 @@ work the same as a menu or tree item. For each search result item you have to sp
 it's id and path, which can be used in the front-end to locate the corresponding resource.
 
 Please note the additional data I provide for this item, and especialy why I have chosen
-to include `Url`. This piece of data is used by (my search formatter as sub title)[https://github.com/umbraco/Umbraco-CMS/blob/e0025db56d52b770d2b3aedbd48a3b804fd15ef0/src/Umbraco.Web.UI.Client/src/common/services/searchresultformatter.service.js#L13].
+to include `Url`. This piece of data is used by [my search formatter as sub title](https://github.com/umbraco/Umbraco-CMS/blob/e0025db56d52b770d2b3aedbd48a3b804fd15ef0/src/Umbraco.Web.UI.Client/src/common/services/searchresultformatter.service.js#L13).
 In your own custom search result provider you can use this, or any of the included meta
 data from your search controller to specify the correct path for the resource. You can
 align this path with the paths given by the `GetTreeNodes` or `GetMenuForNode`, so
