@@ -3,7 +3,7 @@
 Adding support for the search bar in the Umbraco backoffice will make your custom
 section work a lot easier, as users can	quickly find stuff in your section, even
 when they are not navigated to your section. The search bar will search in all sections at 
-the same time, so it can even display search results from multiple different custom sections
+the same time, so it will display search results from multiple different custom sections
 at the same time.
 
 To include support for the search bar is quite easy. However, because of the way the 
@@ -11,10 +11,10 @@ search bar is currently implemented in Umbraco, it will require you to create yo
 own custom search result formatter, or accept the given editor path structure defined by 
 an existing formatter. And, since the current implementation does not support dependency
 injection, it will try to instantiate your custom search controller using the default 
-constructor, so any DI will be ignored.
+constructor, so any DI will be ignored. 
 
 In order to support search, two things are required: adding a `SearchableTree` 
-attribute to a controller, and have that controller implement `ISearchableTree`. 
+attribute to the controller, and have that controller implement `ISearchableTree`. 
 I have added these two things to my `CustomTreeController`, which will result 
 in something like this:
 
@@ -38,7 +38,7 @@ namespace UmbracoCustomSection.App_Plugins.CustomSection.Controllers
 }
 ```
 
-Both the attribute and the interface live in `Umbraco.Web.Search` namespace, so we need to
+Both the attribute and the interface live in  the `Umbraco.Web.Search` namespace, so we need to
 start `using` that namespace. 
 
 The `SearchableTree` attribute takes two arguments, both are related to which formatting function is
@@ -61,7 +61,7 @@ public IEnumerable<SearchResultItem> Search(string query, int pageSize, long pag
 }
 ```
 
-Since we are still hard-coding everything and have not setup any database implementation,
+Since we are still hard-coding everything and have not setup any database,
 I will keep this method simple to demonstrate the basic idea:
 
 ``` Csharp
@@ -93,8 +93,8 @@ Rebuilding and restarting Umbraco will give you something like this:
 ![Search results](images/search1.png)
 
 You are supposed to implement the pagination of search results correctly, but since
-I only return a single search result I did not implement any pagination. And, because
-of this method is called almost everytime the user enters a new character, caching
+I only return a single search result I did not bother to do so. Because
+this method is called almost everytime the user enters a new character, caching
 the results can be beneficial for performance. 
 
 Your search results will be grouped under a single node of which the title is defined by the
