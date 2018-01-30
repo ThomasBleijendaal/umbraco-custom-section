@@ -28,11 +28,11 @@ of Umbraco. So to start, do the following:
 3. [Search](search.md)
 4. [Dependency Injection](di.md)
 5. Custom pages
-	a. Setting up dashboard
-	b. Setting up Angular in your section
-	c. Setting up an API controller
-	d. Setting up a search result formatter
-	e. Setting up custom notifications
+	- Setting up dashboard
+	- Setting up Angular in your section
+	- Setting up an API controller
+	- Setting up a search result formatter
+	- Setting up custom notifications
 6. Multiple sections
 7. Very basic two factor authentication
 8. ADFS / Azure AD / Azure AD B2C
