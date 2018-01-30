@@ -62,15 +62,15 @@ To the `ContainerBuilder` we register all the the `Controllers` we need, the
 `CustomTreeController` (and all other controllers in the custom section) and
 register all the controllers included in Umbraco. 
 
-After that we setup the `CustomSectionDbContext`, which uses an `InMemoryDatabase`.
+After that, we setup the `CustomSectionDbContext`, which uses an `InMemoryDatabase`.
 Such a database is ideal for an example project like this. No migrations, a single initializer we use to
 seed the data and no complex setup. In [the repository](https://github.com/ThomasBleijendaal/umbraco-custom-section/tree/master/CustomSection) 
 you can find all the classes involved with the database setup, I have omitted these 
 here to avoid endless code listings.
 
-Now that we have a `DbContext` we can inject everywhere. (Although in a real application,
+Now that we have a `DbContext`, we can inject everywhere. (Although in a real application,
 you probably want to wrap the context in some services, and offload the context and
-models to a seperate project in the same solution.) First thing we are update is the 
+models to a seperate project in the same solution.) First thing we do is update the 
 `CustomTreeController`, since the menu is still hard-coded:
 
 ``` Csharp
@@ -124,9 +124,10 @@ search intergration for this section is now broken:
 
 ![No results](images/di2.png)
 
-In order to fix this, we need to provide a parameterless contstructor and fetch the
+In order to fix this, we need to provide a parameterless constructor and fetch the
 `DbContext` ourselves when the `TreeController` is constructed using the parameterless
-constructor. 
+constructor. Or remove the non-parameterless constructor and always fetch your own
+dependencies in the constructor.
 
 ``` Csharp
 public CustomTreeController()
@@ -135,7 +136,7 @@ public CustomTreeController()
 }
 ```
 
-And update the `Search` method:
+We only have to update the `Search` method to get everything working correctly:
 
 ``` Csharp
 public IEnumerable<SearchResultItem> Search(string query, int pageSize, long pageIndex, out long totalFound, string searchFrom = null)
@@ -168,5 +169,6 @@ Rebuilding the application will result in the following:
 
 ## Next
 
-Next thing to do is to start with the custom pages, to make our custom section
-usefull and add some real functionality.
+Now that we have DI working, we can really start building some real functionality. Next thing to do
+is to start with the custom pages, to make our custom section usefull and provide the user
+with some real UI.
