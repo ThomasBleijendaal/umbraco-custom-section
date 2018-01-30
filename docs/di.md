@@ -63,7 +63,7 @@ To the `ContainerBuilder` we register all the the `Controllers` we need, the
 register all the controllers included in Umbraco. 
 
 After that we setup the `CustomSectionDbContext`, which uses an `InMemoryDatabase`.
-Such a database is ideal for an example project like this. No migrations, a single initializer to
+Such a database is ideal for an example project like this. No migrations, a single initializer we use to
 seed the data and no complex setup. In [the repository](https://github.com/ThomasBleijendaal/umbraco-custom-section/tree/master/CustomSection) 
 you can find all the classes involved with the database setup, I have omitted these 
 here to avoid endless code listings.
