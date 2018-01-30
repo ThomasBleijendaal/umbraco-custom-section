@@ -162,3 +162,11 @@ public IEnumerable<SearchResultItem> Search(string query, int pageSize, long pag
 }
 ```
 
+Rebuilding the application will result in the following:
+
+![Search working again](images/di3.png)
+
+## Next
+
+Next thing to do is to start with the custom pages, to make our custom section
+usefull and add some real functionality.

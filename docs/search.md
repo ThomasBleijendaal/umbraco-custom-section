@@ -108,3 +108,8 @@ In your own custom search result provider you can use this, or any of the includ
 data from your search controller to specify the correct path for the resource. You can
 align this path with the paths given by the `GetTreeNodes` or `GetMenuForNode`, so
 everything will work correctly. In the Custom Section chapter I will demonstrate this.
+
+## Next
+
+Next we will implement DI to make our custom section's backend work just like a regular
+WebApi application.
