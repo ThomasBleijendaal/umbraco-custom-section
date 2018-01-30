@@ -7,6 +7,7 @@ namespace UmbracoCustomSection.App_Plugins.CustomSection.Models
 {
     public class Node
     {
+        public Node ParentNode { get; set; }
         public IList<Node> SubNodes { get; set; }
 
         public int Id { get; set; }

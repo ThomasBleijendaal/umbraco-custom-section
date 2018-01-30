@@ -72,4 +72,49 @@ Now that we have a `DbContext` we can inject everywhere (although in a real cust
 you probably want to wrap the context in some services). First thing we are update is the 
 `CustomTreeController`, since the menu is still hard-coded:
 
+``` Csharp
+public class CustomTreeController : TreeController, ISearchableTree
+{
+	private readonly CustomSectionDbContext _dbContext;
+
+	public CustomTreeController(CustomSectionDbContext dbContext)
+	{
+		_dbContext = dbContext;
+	}
+	// [..]
+}
+```
+
+If we build and restart the website, the `CustomTreeController` is instantiated with a fully
+initialized and seeded `DbContext`. We can use that object to feed the `GetTreeNodes` with
+some 'real' data:
+
+``` Csharp
+protected override TreeNodeCollection GetTreeNodes(string id, FormDataCollection queryStrings)
+{
+	var collection = new TreeNodeCollection();
+
+	if (int.TryParse(id, out int parentNodeId))
+	{
+		var nodes = (id == "-1")
+			? _dbContext.Nodes.Where(n => n.ParentNode == null).ToList()
+			: _dbContext.Nodes.Where(n => n.ParentNode.Id == parentNodeId).ToList();
+
+		collection.AddRange(nodes.Select(node =>
+			CreateTreeNode(
+				$"{node.Id}",
+				$"{parentNodeId}",
+				queryStrings,
+				node.Name,
+				GetIconForNode(node),
+				node.SubNodes?.Any() ?? false)));
+	}
+
+	return collection;
+}
+```
+
+Building and restarting the web site will result in something like this:
+
+![Updated tree based upon data from a DbContext](images/di1.png)
 

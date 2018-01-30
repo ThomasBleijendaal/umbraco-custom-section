@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http.Formatting;
 using umbraco.BusinessLogic.Actions;
 using Umbraco.Web.Models.ContentEditing;
@@ -7,6 +8,7 @@ using Umbraco.Web.Mvc;
 using Umbraco.Web.Search;
 using Umbraco.Web.Trees;
 using UmbracoCustomSection.App_Plugins.CustomSection.Data;
+using UmbracoCustomSection.App_Plugins.CustomSection.Models;
 
 namespace UmbracoCustomSection.App_Plugins.CustomSection.Controllers
 {
@@ -26,26 +28,39 @@ namespace UmbracoCustomSection.App_Plugins.CustomSection.Controllers
         {
             var collection = new TreeNodeCollection();
 
-            if (id == "-1")
+            if (int.TryParse(id, out int parentNodeId))
             {
-                collection.Add(CreateTreeNode("A", "-1", queryStrings, "Item A", "icon-tree color-green", true));
-                collection.Add(CreateTreeNode("B", "-1", queryStrings, "Item B", "icon-tree color-yellow", true));
-                collection.Add(CreateTreeNode("C", "-1", queryStrings, "Item C", "icon-tree color-red", true));
-            }
-            else if (id.Length == 1)
-            {
-                collection.Add(CreateTreeNode($"{id}1", id, queryStrings, $"Item {id}1", "icon-trophy color-green", true));
-                collection.Add(CreateTreeNode($"{id}2", id, queryStrings, $"Item {id}2", "icon-trophy color-yellow", true));
-                collection.Add(CreateTreeNode($"{id}3", id, queryStrings, $"Item {id}3", "icon-trophy color-red", true));
-            }
-            else if (id.Length == 2)
-            {
-                collection.Add(CreateTreeNode($"{id}1", id, queryStrings, $"Item {id}a", "icon-stream color-green", false));
-                collection.Add(CreateTreeNode($"{id}2", id, queryStrings, $"Item {id}b", "icon-stream color-yellow", false));
-                collection.Add(CreateTreeNode($"{id}3", id, queryStrings, $"Item {id}c", "icon-stream color-red", false));
+                var nodes = (id == "-1")
+                    ? _dbContext.Nodes.Where(n => n.ParentNode == null).ToList()
+                    : _dbContext.Nodes.Where(n => n.ParentNode.Id == parentNodeId).ToList();
+
+                collection.AddRange(nodes.Select(node =>
+                    CreateTreeNode(
+                        $"{node.Id}",
+                        $"{parentNodeId}",
+                        queryStrings,
+                        node.Name,
+                        GetIconForNode(node),
+                        node.SubNodes?.Any() ?? false)));
             }
 
             return collection;
+        }
+
+        private string GetIconForNode(Node node)
+        {
+            if (node.ParentNode == null)
+            {
+                return $"icon-tree color-{node.Color}";
+            }
+            else if (node.SubNodes?.Any() ?? false)
+            {
+                return $"icon-trophy color-{node.Color}";
+            }
+            else
+            {
+                return $"icon-stream color-{node.Color}";
+            }
         }
 
         protected override MenuItemCollection GetMenuForNode(string id, FormDataCollection queryStrings)
