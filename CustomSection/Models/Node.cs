@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace UmbracoCustomSection.App_Plugins.CustomSection.Models
+{
+    public class Node
+    {
+        public IList<Node> SubNodes { get; set; }
+
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Color { get; set; }
+    }
+}

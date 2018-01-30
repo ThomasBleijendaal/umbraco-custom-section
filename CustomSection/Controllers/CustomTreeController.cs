@@ -6,6 +6,7 @@ using Umbraco.Web.Models.Trees;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.Search;
 using Umbraco.Web.Trees;
+using UmbracoCustomSection.App_Plugins.CustomSection.Data;
 
 namespace UmbracoCustomSection.App_Plugins.CustomSection.Controllers
 {
@@ -14,6 +15,13 @@ namespace UmbracoCustomSection.App_Plugins.CustomSection.Controllers
     [PluginController("CustomSection")]
     public class CustomTreeController : TreeController, ISearchableTree
     {
+        private readonly CustomSectionDbContext _dbContext;
+
+        public CustomTreeController(CustomSectionDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         protected override TreeNodeCollection GetTreeNodes(string id, FormDataCollection queryStrings)
         {
             var collection = new TreeNodeCollection();

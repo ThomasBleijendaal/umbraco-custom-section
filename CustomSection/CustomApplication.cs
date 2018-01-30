@@ -1,4 +1,13 @@
-﻿using Umbraco.Core;
+﻿using Autofac;
+using Autofac.Integration.Mvc;
+using Autofac.Integration.WebApi;
+using Microsoft.EntityFrameworkCore;
+using System.Web.Http;
+using System.Web.Mvc;
+using Umbraco.Core;
+using Umbraco.Web;
+using UmbracoCustomSection.App_Plugins.CustomSection.Controllers;
+using UmbracoCustomSection.App_Plugins.CustomSection.Data;
 
 namespace UmbracoCustomSection.App_Plugins.CustomSection
 {
@@ -6,7 +15,34 @@ namespace UmbracoCustomSection.App_Plugins.CustomSection
     {
         public void OnApplicationInitialized(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
         {
-            // here you can setup your DI
+            var builder = new ContainerBuilder();
+
+            //Register all controllers in Tree name space
+            builder.RegisterApiControllers(typeof(CustomTreeController).Assembly);
+
+            //register umbraco MVC + WebApi controllers used by the admin site
+            builder.RegisterControllers(typeof(UmbracoApplication).Assembly);
+            builder.RegisterApiControllers(typeof(UmbracoApplication).Assembly);
+
+            builder.Register(context =>
+            {
+                var options = new DbContextOptionsBuilder<CustomSectionDbContext>();
+                options.UseInMemoryDatabase(databaseName: "CustomSection");
+
+                var ctx = new CustomSectionDbContext(options.Options);
+
+                CustomSectionDbInitializer.Initialize(ctx);
+
+                return ctx;
+            }).InstancePerRequest();
+            
+            var container = builder.Build();
+
+            //Set the MVC DependencyResolver
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+
+            //Set the WebApi DependencyResolver
+            GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
         }
 
         public void OnApplicationStarted(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)

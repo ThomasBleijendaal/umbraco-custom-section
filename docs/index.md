@@ -26,7 +26,7 @@ of Umbraco. So to start, do the following:
 1. [Basics](basics.md)
 2. [Custom Tree](tree.md)
 3. [Search](search.md)
-4. Dependency Injection
+4. [Dependency Injection](di.md)
 5. Dashboard
 6. Custom pages
 	a. Setting up Angular in your section
