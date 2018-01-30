@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Formatting;
+using System.Web.Mvc;
 using umbraco.BusinessLogic.Actions;
 using Umbraco.Web.Models.ContentEditing;
 using Umbraco.Web.Models.Trees;
@@ -18,6 +19,11 @@ namespace UmbracoCustomSection.App_Plugins.CustomSection.Controllers
     public class CustomTreeController : TreeController, ISearchableTree
     {
         private readonly CustomSectionDbContext _dbContext;
+
+        public CustomTreeController()
+        {
+            _dbContext = DependencyResolver.Current.GetService<CustomSectionDbContext>();
+        }
 
         public CustomTreeController(CustomSectionDbContext dbContext)
         {
@@ -47,21 +53,7 @@ namespace UmbracoCustomSection.App_Plugins.CustomSection.Controllers
             return collection;
         }
 
-        private string GetIconForNode(Node node)
-        {
-            if (node.ParentNode == null)
-            {
-                return $"icon-tree color-{node.Color}";
-            }
-            else if (node.SubNodes?.Any() ?? false)
-            {
-                return $"icon-trophy color-{node.Color}";
-            }
-            else
-            {
-                return $"icon-stream color-{node.Color}";
-            }
-        }
+
 
         protected override MenuItemCollection GetMenuForNode(string id, FormDataCollection queryStrings)
         {
@@ -89,24 +81,48 @@ namespace UmbracoCustomSection.App_Plugins.CustomSection.Controllers
 
         public IEnumerable<SearchResultItem> Search(string query, int pageSize, long pageIndex, out long totalFound, string searchFrom = null)
         {
-            totalFound = 1;
+            var results = _dbContext.Nodes.Where(n => n.Name.ToLower().Contains(query.ToLower())).ToList();
 
-            var results = new List<SearchResultItem>();
+            totalFound = results.Count;
 
-            var item = new SearchResultItem
+            return results.Select(node =>
             {
-                Icon = "icon-tree",
-                Id = "1",
-                Name = query,
-                ParentId = -1,
-                Path = $"-1,1",
-                Score = 0.5f
-            };
-            item.AdditionalData.Add("Url", "/some/custom/url");
+                var item = new SearchResultItem
+                {
+                    Icon = GetIconForNode(node),
+                    Id = node.Id,
+                    Name = node.Name,
+                    ParentId = node.ParentNode?.Id ?? -1,
+                    Path = GetPathForNode(node),
+                    Score = node.Name.Intersect(query).Count() / (float)node.Name.Length
+                };
+                item.AdditionalData.Add("Url", "/some/path");
 
-            results.Add(item);
+                return item;
+            });
+        }
 
-            return results;
+        private string GetIconForNode(Node node)
+        {
+            if (node.ParentNode == null)
+            {
+                return $"icon-tree color-{node.Color}";
+            }
+            else if (node.SubNodes?.Any() ?? false)
+            {
+                return $"icon-trophy color-{node.Color}";
+            }
+            else
+            {
+                return $"icon-stream color-{node.Color}";
+            }
+        }
+
+        private string GetPathForNode(Node node)
+        {
+            return (node.ParentNode != null)
+                ? $"{GetPathForNode(node.ParentNode)},{node.Id}"
+                : $"{node.Id}";
         }
     }
 }

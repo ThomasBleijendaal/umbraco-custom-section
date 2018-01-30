@@ -5,7 +5,7 @@ is easy. Umbraco does not force you to use a certain type of DI, so
 you can choose anything you want.
 
 We will be using Autofac, and use it to inject a database context
-build on Entity Framework Core into our Api- and TreeControllers. 
+based upon Entity Framework Core into our Api- and TreeControllers. 
 Since we replace the default dependency resolvers, we need to keep in
 mind that we register all regular and api controllers used by Umbraco.
 
@@ -59,17 +59,18 @@ public void OnApplicationInitialized(UmbracoApplicationBase umbracoApplication, 
 ```
 
 To the `ContainerBuilder` we register all the the `Controllers` we need, the
-`CustomTreeController` (and any other new controller added to the custom section) and
+`CustomTreeController` (and all other controllers in the custom section) and
 register all the controllers included in Umbraco. 
 
-After that we setup the `CustomSectionDbContext`, which uses an `InMemoryDatabase`,
-which is for an example project like this ideal. No migrations, a single initializer to
+After that we setup the `CustomSectionDbContext`, which uses an `InMemoryDatabase`.
+Such a database is ideal for an example project like this. No migrations, a single initializer to
 seed the data and no complex setup. In [the repository](https://github.com/ThomasBleijendaal/umbraco-custom-section/tree/master/CustomSection) 
 you can find all the classes involved with the database setup, I have omitted these 
 here to avoid endless code listings.
 
-Now that we have a `DbContext` we can inject everywhere (although in a real custom section,
-you probably want to wrap the context in some services). First thing we are update is the 
+Now that we have a `DbContext` we can inject everywhere. (Although in a real application,
+you probably want to wrap the context in some services, and offload the context and
+models to a seperate project in the same solution.) First thing we are update is the 
 `CustomTreeController`, since the menu is still hard-coded:
 
 ``` Csharp
@@ -117,4 +118,47 @@ protected override TreeNodeCollection GetTreeNodes(string id, FormDataCollection
 Building and restarting the web site will result in something like this:
 
 ![Updated tree based upon data from a DbContext](images/di1.png)
+
+But, since there is no parameterless constructor on the `CustomTreeController`, the
+search intergration for this section is now broken:
+
+![No results](images/di2.png)
+
+In order to fix this, we need to provide a parameterless contstructor and fetch the
+`DbContext` ourselves when the `TreeController` is constructed using the parameterless
+constructor. 
+
+``` Csharp
+public CustomTreeController()
+{
+	_dbContext = DependencyResolver.Current.GetService<CustomSectionDbContext>();
+}
+```
+
+And update the `Search` method:
+
+``` Csharp
+public IEnumerable<SearchResultItem> Search(string query, int pageSize, long pageIndex, out long totalFound, string searchFrom = null)
+{
+	var results = _dbContext.Nodes.Where(n => n.Name.ToLower().Contains(query.ToLower())).ToList();
+
+	totalFound = results.Count;
+
+	return results.Select(node =>
+	{
+		var item = new SearchResultItem
+		{
+			Icon = GetIconForNode(node),
+			Id = node.Id,
+			Name = node.Name,
+			ParentId = node.ParentNode?.Id ?? -1,
+			Path = GetPathForNode(node),
+			Score = node.Name.Intersect(query).Count() / (float)node.Name.Length
+		};
+		item.AdditionalData.Add("Url", "/some/path");
+
+		return item;
+	});
+}
+```
 
