@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web.Mvc;
@@ -34,11 +35,11 @@ namespace UmbracoCustomSection.App_Plugins.CustomSection.Controllers
         {
             var collection = new TreeNodeCollection();
 
-            if (int.TryParse(id, out int parentNodeId))
+            if (int.TryParse(id, out var parentNodeId))
             {
                 var nodes = (id == "-1")
-                    ? _dbContext.Nodes.Where(n => n.ParentNode == null).ToList()
-                    : _dbContext.Nodes.Where(n => n.ParentNode.Id == parentNodeId).ToList();
+                    ? _dbContext.Nodes.Include(n => n.SubNodes).Where(n => n.ParentNode == null).ToList()
+                    : _dbContext.Nodes.Include(n => n.SubNodes).Where(n => n.ParentNode.Id == parentNodeId).ToList();
 
                 collection.AddRange(nodes.Select(node =>
                     CreateTreeNode(

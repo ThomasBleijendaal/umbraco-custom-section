@@ -1,0 +1,9 @@
+﻿{
+    "javascript": [
+        "~/App_Plugins/CustomSection/backoffice/controllers/dashboard-controller.js",
+        "~/App_Plugins/CustomSection/backoffice/services/dashboard-service.js"
+    ],
+    "css": [
+        "~/App_Plugins/CustomSection/backoffice/assets/dashboard.css"
+    ]
+}

@@ -28,13 +28,13 @@ using Umbraco.Web.Trees;
 
 namespace UmbracoCustomSection.App_Plugins.CustomSection.Controllers
 {
-	[Tree("customSection", "customTree", "Custom Section", iconClosed: "icon-tree", iconOpen: "icon-trophy")]
-	[SearchableTree("searchResultFormatter", "configureContentResult")]
-	[PluginController("CustomSection")]
-	public class CustomTreeController : TreeController, ISearchableTree
-	{
-		/* .. */
-	}
+    [Tree("customSection", "customTree", "Custom Section", iconClosed: "icon-tree", iconOpen: "icon-trophy")]
+    [SearchableTree("searchResultFormatter", "configureContentResult")]
+    [PluginController("CustomSection")]
+    public class CustomTreeController : TreeController, ISearchableTree
+    {
+        /* .. */
+    }
 }
 ```
 
@@ -57,7 +57,7 @@ to the `GetMenuForNode` or `GetTreeNodes` methods:
 ``` Csharp
 public IEnumerable<SearchResultItem> Search(string query, int pageSize, long pageIndex, out long totalFound, string searchFrom = null)
 {
-	// do search
+    // do search
 }
 ```
 
@@ -67,24 +67,24 @@ I will keep this method simple to demonstrate the basic idea:
 ``` Csharp
 public IEnumerable<SearchResultItem> Search(string query, int pageSize, long pageIndex, out long totalFound, string searchFrom = null)
 {
-	totalFound = 1;
+    totalFound = 1;
 
-	var results = new List<SearchResultItem>();
+    var results = new List<SearchResultItem>();
 
-	var item = new SearchResultItem
-	{
-		Icon = "icon-tree",
-		Id = "1",
-		Name = query,
-		ParentId = -1,
-		Path = $"-1,1",
-		Score = 0.5f
-	};
-	item.AdditionalData.Add("Url", "/some/custom/url");
+    var item = new SearchResultItem
+    {
+        Icon = "icon-tree",
+        Id = "1",
+        Name = query,
+        ParentId = -1,
+        Path = $"-1,1",
+        Score = 0.5f
+    };
+    item.AdditionalData.Add("Url", "/some/custom/url");
 
-	results.Add(item);
+    results.Add(item);
 
-	return results;
+    return results;
 }
 ```
 

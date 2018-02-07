@@ -27,34 +27,34 @@ some objects to the `ContainerBuilder`:
 ``` Csharp
 public void OnApplicationInitialized(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
 {
-	var builder = new ContainerBuilder();
-	
-	//Register all controllers in Tree name space
-	builder.RegisterApiControllers(typeof(CustomTreeController).Assembly);
+    var builder = new ContainerBuilder();
+    
+    //Register all controllers in Tree name space
+    builder.RegisterApiControllers(typeof(CustomTreeController).Assembly);
 
-	//register umbraco MVC + WebApi controllers used by the admin site
-	builder.RegisterControllers(typeof(UmbracoApplication).Assembly);
-	builder.RegisterApiControllers(typeof(UmbracoApplication).Assembly);
+    //register umbraco MVC + WebApi controllers used by the admin site
+    builder.RegisterControllers(typeof(UmbracoApplication).Assembly);
+    builder.RegisterApiControllers(typeof(UmbracoApplication).Assembly);
 
-	builder.Register(context =>
-	{
-		var options = new DbContextOptionsBuilder<CustomSectionDbContext>();
-		options.UseInMemoryDatabase(databaseName: "CustomSection");
+    builder.Register(context =>
+    {
+        var options = new DbContextOptionsBuilder<CustomSectionDbContext>();
+        options.UseInMemoryDatabase(databaseName: "CustomSection");
 
-		var ctx = new CustomSectionDbContext(options.Options);
+        var ctx = new CustomSectionDbContext(options.Options);
 
-		CustomSectionDbInitializer.Initialize(ctx);
+        CustomSectionDbInitializer.Initialize(ctx);
 
-		return ctx;
-	}).InstancePerRequest();
+        return ctx;
+    }).InstancePerRequest();
 
-	var container = builder.Build();
+    var container = builder.Build();
 
-	//Set the MVC DependencyResolver
-	DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+    //Set the MVC DependencyResolver
+    DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
-	//Set the WebApi DependencyResolver
-	GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+    //Set the WebApi DependencyResolver
+    GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
 }
 ```
 
@@ -76,13 +76,13 @@ models to a seperate project in the same solution.) First thing we do is update 
 ``` Csharp
 public class CustomTreeController : TreeController, ISearchableTree
 {
-	private readonly CustomSectionDbContext _dbContext;
+    private readonly CustomSectionDbContext _dbContext;
 
-	public CustomTreeController(CustomSectionDbContext dbContext)
-	{
-		_dbContext = dbContext;
-	}
-	// [..]
+    public CustomTreeController(CustomSectionDbContext dbContext)
+    {
+        _dbContext = dbContext;
+    }
+    // [..]
 }
 ```
 
@@ -93,25 +93,25 @@ some 'real' data:
 ``` Csharp
 protected override TreeNodeCollection GetTreeNodes(string id, FormDataCollection queryStrings)
 {
-	var collection = new TreeNodeCollection();
+    var collection = new TreeNodeCollection();
 
-	if (int.TryParse(id, out int parentNodeId))
-	{
-		var nodes = (id == "-1")
-			? _dbContext.Nodes.Where(n => n.ParentNode == null).ToList()
-			: _dbContext.Nodes.Where(n => n.ParentNode.Id == parentNodeId).ToList();
+    if (int.TryParse(id, out int parentNodeId))
+    {
+        var nodes = (id == "-1")
+            ? _dbContext.Nodes.Where(n => n.ParentNode == null).ToList()
+            : _dbContext.Nodes.Where(n => n.ParentNode.Id == parentNodeId).ToList();
 
-		collection.AddRange(nodes.Select(node =>
-			CreateTreeNode(
-				$"{node.Id}",
-				$"{parentNodeId}",
-				queryStrings,
-				node.Name,
-				GetIconForNode(node),
-				node.SubNodes?.Any() ?? false)));
-	}
+        collection.AddRange(nodes.Select(node =>
+            CreateTreeNode(
+                $"{node.Id}",
+                $"{parentNodeId}",
+                queryStrings,
+                node.Name,
+                GetIconForNode(node),
+                node.SubNodes?.Any() ?? false)));
+    }
 
-	return collection;
+    return collection;
 }
 ```
 
@@ -132,7 +132,7 @@ dependencies in the constructor.
 ``` Csharp
 public CustomTreeController()
 {
-	_dbContext = DependencyResolver.Current.GetService<CustomSectionDbContext>();
+    _dbContext = DependencyResolver.Current.GetService<CustomSectionDbContext>();
 }
 ```
 
@@ -141,25 +141,25 @@ We only have to update the `Search` method to get everything working correctly:
 ``` Csharp
 public IEnumerable<SearchResultItem> Search(string query, int pageSize, long pageIndex, out long totalFound, string searchFrom = null)
 {
-	var results = _dbContext.Nodes.Where(n => n.Name.ToLower().Contains(query.ToLower())).ToList();
+    var results = _dbContext.Nodes.Where(n => n.Name.ToLower().Contains(query.ToLower())).ToList();
 
-	totalFound = results.Count;
+    totalFound = results.Count;
 
-	return results.Select(node =>
-	{
-		var item = new SearchResultItem
-		{
-			Icon = GetIconForNode(node),
-			Id = node.Id,
-			Name = node.Name,
-			ParentId = node.ParentNode?.Id ?? -1,
-			Path = GetPathForNode(node),
-			Score = node.Name.Intersect(query).Count() / (float)node.Name.Length
-		};
-		item.AdditionalData.Add("Url", "/some/path");
+    return results.Select(node =>
+    {
+        var item = new SearchResultItem
+        {
+            Icon = GetIconForNode(node),
+            Id = node.Id,
+            Name = node.Name,
+            ParentId = node.ParentNode?.Id ?? -1,
+            Path = GetPathForNode(node),
+            Score = node.Name.Intersect(query).Count() / (float)node.Name.Length
+        };
+        item.AdditionalData.Add("Url", "/some/path");
 
-		return item;
-	});
+        return item;
+    });
 }
 ```
 

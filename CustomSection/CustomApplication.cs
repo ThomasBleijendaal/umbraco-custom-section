@@ -31,11 +31,9 @@ namespace UmbracoCustomSection.App_Plugins.CustomSection
 
                 var ctx = new CustomSectionDbContext(options.Options);
 
-                CustomSectionDbInitializer.Initialize(ctx);
-
                 return ctx;
             }).InstancePerRequest();
-            
+
             var container = builder.Build();
 
             //Set the MVC DependencyResolver
@@ -43,6 +41,9 @@ namespace UmbracoCustomSection.App_Plugins.CustomSection
 
             //Set the WebApi DependencyResolver
             GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+
+            //Seed the database
+            CustomSectionDbInitializer.Initialize(DependencyResolver.Current.GetService<CustomSectionDbContext>());
         }
 
         public void OnApplicationStarted(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)

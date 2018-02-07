@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UmbracoCustomSection.App_Plugins.CustomSection.Models;
 
 namespace UmbracoCustomSection.App_Plugins.CustomSection.Data
 {
     public static class CustomSectionDbInitializer
     {
+        static bool inited = false;
+
         public static void Initialize(CustomSectionDbContext customSectionDbContext)
         {
-            customSectionDbContext.Database.EnsureDeleted();
-            customSectionDbContext.Database.EnsureCreated();
-
             customSectionDbContext.Nodes.AddRange(new[]
             {
                 new Node { Id= 1, Name = "Item 1", Color = "green", SubNodes = new List<Node>
