@@ -119,4 +119,74 @@ after building and restarting the site:
 
 ![Service working](images/custom5.png)
 
-Updating the service to have it make an API call
+Updating the service to have it make an API call will result in the following:
+
+``` js
+(function (angular) {
+    'use strict';
+
+    angular.module('umbraco.services').factory('dashboardService', DashboardService);
+
+    function DashboardService($http, $q) {
+        return {
+            getNodeCount: function () {
+                var url = 'backoffice/CustomSection/Dashboard/GetNodeCount';
+
+                return $http.get(url)
+                    .then(
+                    function (response) {
+                        return response.data;
+                    },
+                    function (error) {
+                        return $q.reject(error);
+                    });
+            }
+        };
+    }
+})(angular);
+```
+
+This performs a simple GET call to the `DashboardController`'s `GetNodeCount` method. The
+url to any HTTP call to an API controller always starts with `backoffice/`, followed by 
+the section's name (`CustomSection`), after that the controller and action. This routing is
+managed by Umbraco and automatically setup for any controller. The corresponding C# controller
+looks like this:
+
+``` Csharp
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
+using System.Web.Http;
+using Umbraco.Web.Editors;
+using Umbraco.Web.Mvc;
+using UmbracoCustomSection.App_Plugins.CustomSection.Data;
+
+namespace UmbracoCustomSection.App_Plugins.CustomSection.Controllers
+{
+    [PluginController("CustomSection")]
+    public class DashboardController : UmbracoAuthorizedJsonController
+    {
+        private readonly CustomSectionDbContext _dbContext;
+
+        public DashboardController(CustomSectionDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
+        [HttpGet]
+        public async Task<int> GetNodeCount()
+        {
+            return await _dbContext.Nodes.CountAsync();
+        }
+    }
+}
+```
+
+This C# controller is derived from `UmbracoAuthorizedJsonController`, which is provided by
+Umbraco and is the base of any backoffice API controller. It automatically gets correctly routed
+when it has a `PluginController` attribute attached. The controller is comparable to a regular 
+API controller, and fully supports dependency injection and `async` methods. 
+
+## Next
+
+Next step is getting all the [backoffice controllers working](custom_controllers.md), for the different tasks. There are
+a few to choose from, and it is good to know what the differences are. 
