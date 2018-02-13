@@ -1,10 +1,9 @@
 ﻿## Angular
 
-In order to get our Angular controllers, directives, helpers, and
-anything other included in the Umbraco backoffice, we need to add a
-manifest to the root of our custom section. This file, named 
-`package.manifest` contains all javascript and css files included
-in our custom section.
+In order to get our Angular controllers, directives, helpers, and anything else 
+included in the Umbraco backoffice, we need to add a manifest to the root of our 
+custom section. This file, named `package.manifest` contains all javascript and 
+css files included in our custom section.
 
 An empty `package.manifest` looks like this:
 
@@ -64,9 +63,7 @@ module in javascript, and reference the controller in your html view using `ng-c
 ``` html
 <div ng-controller="DashboardController as dashboard">
     <h1>Dashboard!</h1>
-
     <p>Total nodes: {{dashboard.nodeCount}}.</p>
-    
 </div>
 ```
 
@@ -188,5 +185,5 @@ API controller, and fully supports dependency injection and `async` methods.
 
 ## Next
 
-Next step is getting all the [backoffice controllers working](custom_controllers.md), for the different tasks. There are
+Next step is getting all the [backoffice controllers working](custom_controllers.md), for the various tasks. There are
 a few to choose from, and it is good to know what the differences are. 

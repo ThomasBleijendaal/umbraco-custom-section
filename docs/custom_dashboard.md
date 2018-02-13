@@ -1,9 +1,9 @@
 ﻿## Custom Dashboard
 
-The dashboard of a section is the index of a section, it is the page the user
+The dashboard of a section is the index of a section; it is the page the user
 lands on when they navigate to your section, or click on the root element in the
-tree. The header of a dashboard cannot be changed, only the content part, see
-the next image. The configurable part of the dashboard is marked yellow.
+tree. The header of a dashboard cannot be changed, only the content part (see
+the next image). The adjustable part of the dashboard is marked yellow.
 
 ![Dashboard](images/custom1.png)
 
@@ -33,6 +33,15 @@ these two files, each with a single `h1`-tag in it, saving the configuration fil
 restarting the website, the custom dashboard will look something like this:
 
 ![Page 2](images/custom2.png)
+
+## Subject to change
+
+The way dashboards work in Umbraco is probably subject to change in the near future,
+since the new User section of Umbraco itself does not use a dashboard. It uses a little trick
+to skip the configuration and fully control the whole page. But this requires the use of
+a custom tree, and, judging from the code, feels a bit hacky. In next releases this
+functionality is probably changed and dashboards are either removed completely, or given
+more features. 
 
 ## Next
 
