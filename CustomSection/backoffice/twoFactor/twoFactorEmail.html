@@ -1,0 +1,28 @@
+﻿<div ng-controller="TwoFactorLoginController">
+    <div id="twoFactorlogin" class="umb-modalcolumn umb-dialog" ng-cloak>
+        <div class="login-overlay__logo">
+            <img ng-src="assets/img/application/logo.png"
+                 ng-srcset="assets/img/application/logo@2x.png 2x, assets/img/application/logo@3x.png 3x"
+                 src="assets/img/application/logo.png"
+                 srcset="assets/img/application/logo@2x.png 2x, assets/img/application/logo@3x.png 3x" />
+        </div>
+        <div class="umb-login-container">
+            <div class="form">
+                <h1>Two Factor Authentication</h1>
+                <div ng-if="step=='loading'">
+                    <p>Loading</p>
+                </div>
+                <div ng-if="step=='code'">
+                    <p>An email has been send to your email address containing instructions to set up two factor authentication. After setting up, please enter your two factor authentication code below.</p>
+                    <form method="POST" name="twoFactorCodeForm" ng-submit="validate(provider, code)" ng-if="step=='code'">
+                        <div class="control-group">
+                            <input type="text" name="code" class="-full-width-input" ng-class="{error: didFail}" ng-model="code" />
+                            <div ng-if="didFail" class="text-error">{{errorMsg}}</div>
+                        </div>
+                        <button type="submit" class="btn btn-success">Validate</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

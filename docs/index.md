@@ -31,11 +31,11 @@ of Umbraco. So to start, do the following:
 	- [Setting up dashboard](custom_dashboard.md)
 	- [Setting up Angular in your section](custom_angular.md)
 	- [Setting up backoffice controllers](custom_controllers.md)
-	- Setting up a search result formatter
-	- Setting up custom notifications
-	- Setting up custom dialogs
-6. Multiple sections
-7. Very basic two factor authentication
+	- [Setting up a search result formatter](custom_searchformatter.md)
+	- [Setting up custom notifications](custom_notifications.md)
+	- [Setting up custom dialogs](custom_dialogs.md)
+6. [Multiple sections](sections.md)
+7. [Basic two factor authentication](tfa.md)
 8. ADFS / Azure AD / Azure AD B2C
 
 ## Sources used
