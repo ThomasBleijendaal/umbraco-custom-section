@@ -1,14 +1,14 @@
 ﻿## Basic Two Factor Authentication
 
-Since Umbraco relies on Owin and ASP.NET Identity, adding or modifying
-the login flow is easy. Adding Two Factor Authentication is quite
+Since Umbraco relies on Owin and ASP.NET Identity, modifying
+the login flow is relatively easy. Adding Two Factor Authentication is quite
 simple and really adds an extra level of security to your Umbraco.
 
 There is a seperate [2FA plugin available](https://github.com/Offroadcode/Umbraco-2FA)
 in the Packages page in the Developer section, but it's broken since
 version 7.7, so not really an option. And, since custom sections
 often come with some specific needs, it's best to clearly demonstrate
-the absolute basics of 2FA in Umbraco.
+the absolute basics of getting 2FA to work in Umbraco.
 
 ### Nuget package
 
@@ -71,7 +71,7 @@ the CMS should still work without any noticable change.
 After extending `UmbracoDefaultOwinStartup`, we need to do the same to the
 `BackOfficeUserManager`, and extend it with some extra interfaces and methods.
 
-First, create `CustomBackOfficeUserStore` in the `UserManagement` folder of our 
+First, create `CustomBackOfficeUserStore.cs` in the `UserManagement` folder of our 
 custom section:
 
 ``` Csharp
@@ -120,10 +120,10 @@ namespace UmbracoCustomSection.App_Plugins.CustomSection.UserManagement
 ```
 
 This user store overrides the default store, and always enables two factor authentication
-for every user. You can off course change this behaviour and make it configurable, but that is
+for every user. You can ofcourse change this behaviour and make it configurable, but that is
 all up to you. 
 
-After that, create `CustomBackOfficeUserManager`, also in the `UserManagement` folder:
+After that, create `CustomBackOfficeUserManager.cs`, also in the `UserManagement` folder:
 
 ``` Csharp
 using Microsoft.AspNet.Identity;
@@ -214,13 +214,13 @@ to always return true.
 This class also adds the `IUmbracoBackOfficeTwoFactorOptions` interface to the `BackOfficeUserManager`,
 which requires exposing the `GetTwoFactorView` method. This methods returns an absolute path
 to the view tasked with handling the front-end of the 2FA flow. Just as the previous class,
-you should extend this method to contain some logic which determines if the 2FA for a user has been 
-set up.
+you should change this method to have it contain some logic which determines if the 2FA for the
+current user has been set up.
 
 ### Default Provider
 
 To validate any 2FA codes, we need to add a `DataProtectorTokenProvider` in the shape of
-`DefaultTwoFactorProvider`. Create 'DefaultTwoFactorProvider.cs' in the `TwoFactorProviders` folder:
+`DefaultTwoFactorProvider`. Create `DefaultTwoFactorProvider.cs` in the `TwoFactorProviders` folder:
 
 ``` Csharp
 using Microsoft.AspNet.Identity;
@@ -253,11 +253,11 @@ namespace UmbracoCustomSection.App_Plugins.CustomSection.TwoFactorProviders
 }
 ```
 
-This class needs to do two things: determine whether it is valid for the user currently trying to
-sign in, and validate the 2FA code provided by the user. Since it is the default, it is always valid
-for any user. Validating the 2FA code is done using the `TwoFactorAuth.Net` package we have included
-earlier. I have reduced as much as possible, and only provided the simplest implementation possible,
-hardcoding the user secret and `TwoFactorAuth` configuration. 
+This class needs to do two things: determine whether the provider is valid for the user currently 
+trying to sign in, and validate the 2FA code provided by the user. Since it is the default, it is 
+always valid for any user. Validating the 2FA code is done using the `TwoFactorAuth.Net` package 
+we have included earlier. I have reduced as much as possible, and only provided the simplest 
+implementation possible, hardcoding the user secret and `TwoFactorAuth` configuration. 
 
 
 [The GitHub page](https://github.com/RobThree/TwoFactorAuth.Net) of `TwoFactorAuth.Net` provides a 
@@ -387,8 +387,8 @@ Do not forget to reference this javascript file in [`package.manifest`](custom_a
 
 ### Almost done
 
-We are almost done, we only need to tell Umbraco to use our stuff instead of the default
-using `CustomSectionOwinStartup.cs`:
+We are almost done, we only need to tell Umbraco to use our stuff instead of the default, by 
+modifying `CustomSectionOwinStartup.cs`:
 
 ``` Csharp
 public class CustomSectionOwinStartup : UmbracoDefaultOwinStartup
