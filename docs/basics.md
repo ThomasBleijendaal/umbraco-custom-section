@@ -3,7 +3,7 @@
 Let's start with the basics! Creating a Custom Section. We start with creating a
 folder in App_Plugins. In this folder add `CustomApplication.cs`.
 
-``` Csharp
+```cs
 using Umbraco.Core;
 
 namespace UmbracoCustomSection.App_Plugins.CustomSection
@@ -34,7 +34,7 @@ and modify things at application start.
 
 To register a custom section to Umbraco, add the following in `CustomSection.cs`:
 
-``` Csharp
+```csharp
 using umbraco.businesslogic;
 using umbraco.interfaces;
 
@@ -64,7 +64,7 @@ want to place your section between other sections.
 To get rid of those angle brackets you need to update the language files situated in `Umbraco/config/Lang`,
 and add the following to en.xml, and any other file, to the `<area alias="sections">` :
 
-``` xml
+```xml
 <key alias="customSection">Custom Section</key>
 ```
 
