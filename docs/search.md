@@ -18,7 +18,7 @@ attribute to the controller, and have that controller implement `ISearchableTree
 I have added these two things to my `CustomTreeController`, which will result 
 in something like this:
 
-``` CSharp
+```cs
 using System.Net.Http.Formatting;
 using umbraco.BusinessLogic.Actions;
 using Umbraco.Web.Models.Trees;
@@ -54,7 +54,7 @@ I will show how this is done in the Custom Pages chapter.
 The `ISearchableTree` interface requires you to implement the following function, which is quite similair 
 to the `GetMenuForNode` or `GetTreeNodes` methods:
 
-``` Csharp
+```cs
 public IEnumerable<SearchResultItem> Search(string query, int pageSize, long pageIndex, out long totalFound, string searchFrom = null)
 {
     // do search
@@ -64,7 +64,7 @@ public IEnumerable<SearchResultItem> Search(string query, int pageSize, long pag
 Since we are still hard-coding everything and have not setup any database,
 I will keep this method simple to demonstrate the basic idea:
 
-``` Csharp
+```cs
 public IEnumerable<SearchResultItem> Search(string query, int pageSize, long pageIndex, out long totalFound, string searchFrom = null)
 {
     totalFound = 1;

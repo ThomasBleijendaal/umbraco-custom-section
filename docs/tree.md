@@ -8,7 +8,7 @@ which must be overridden. The TreeController is a bit of an oldie, and does not 
 will have to do for now. The most simplistic implementation of `Controllers/CustomTreeController.cs` will
 look something like this:
 
-``` Csharp
+```cs
 using System.Net.Http.Formatting;
 using Umbraco.Web.Models.Trees;
 using Umbraco.Web.Mvc;
@@ -56,7 +56,7 @@ so it is easy to identify the root node.
 
 I have hard coded some menu items to demonstrate this mechanism:
 
-``` Csharp
+```cs
 protected override TreeNodeCollection GetTreeNodes(string id, FormDataCollection queryStrings)
 {
     var collection = new TreeNodeCollection();
@@ -90,7 +90,7 @@ This results in the following tree:
 
 The `CreateTreeNode` method I have used takes the following arguments:
 
-``` Csharp
+```cs
 CreateTreeNode(string id, string parentId, FormDataCollection queryStrings, string title, string icon, bool hasChildren);
 ```
 
@@ -100,7 +100,7 @@ do not have such an arrow.
 
 There is also an overload which taks the following arguments:
 
-``` Csharp
+```cs
 CreateTreeNode(string id, string parentId, FormDataCollection queryStrings, string title, string icon, bool hasChildren, string routePath);
 ```
 
@@ -116,7 +116,7 @@ The way this method is used is quite similair to the `CreateTreeNodes` method, i
 opens the context menu, and the `id` argument will have the id of the corresponding tree node. There are some default 
 features which you can tap into:
 
-``` Csharp
+```cs
 protected override MenuItemCollection GetMenuForNode(string id, FormDataCollection queryStrings)
 {
     var collection = new MenuItemCollection();

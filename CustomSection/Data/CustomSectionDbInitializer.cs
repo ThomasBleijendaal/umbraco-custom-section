@@ -6,8 +6,6 @@ namespace UmbracoCustomSection.App_Plugins.CustomSection.Data
 {
     public static class CustomSectionDbInitializer
     {
-        static bool inited = false;
-
         public static void Initialize(CustomSectionDbContext customSectionDbContext)
         {
             customSectionDbContext.Nodes.AddRange(new[]

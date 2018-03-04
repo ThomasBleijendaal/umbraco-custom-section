@@ -5,11 +5,11 @@ about creating a custom Umbraco section. The aim is to have working example
 code accompanied by some extra documentation about a custom section. This
 custom section will contain the following features:
 
-- ADFS / AzureAD
+- Custom tree and pages
+- AzureAD / ADFS
 - Two factor authentication
-- Custom section
 
-This is a work in progress.
+It has been developed for and tested on Umbraco 7.7 - 7.9.
 
 ### 1. How to install
 
@@ -17,9 +17,20 @@ The root of this repository is the App_Plugins folder of a default install
 of Umbraco. So to start, do the following:
 
 1. Create empty ASP.NET (.NET Framework) project.
-2. Add UmbracoCms nuget package.
+2. Add UmbracoCms nuget package.    
 3. Clone this repository into the App_Plugins folder. Let ModelsBuilder be.
-4. Run the installer and setup Umbraco.
+4. Add the following nuget packages:
+    - Microsoft.EntityFrameworkCore
+    - Microsoft.EntityFrameworkCore.InMemory
+    - Microsoft.EntityFrameworkCore.Relational
+    - Autofac
+    - Autofac.Mvc5
+    - Autofac.WebApi2
+    - TwoFactorAuthNet
+    - Microsoft.Owin.Security.WsFederation (3.1.0)
+5. Run the installer and setup Umbraco.
+6. Update `web.config` for these features:
+    - [Basic two factor authentication](tfa.md)
 
 ### 2. Table of contents
 
@@ -28,15 +39,15 @@ of Umbraco. So to start, do the following:
 3. [Search](search.md)
 4. [Dependency Injection](di.md)
 5. [Custom pages](custom.md)
-	- [Setting up dashboard](custom_dashboard.md)
-	- [Setting up Angular in your section](custom_angular.md)
-	- [Setting up backoffice controllers](custom_controllers.md)
-	- [Setting up a search result formatter](custom_searchformatter.md)
-	- [Setting up custom notifications](custom_notifications.md)
-	- [Setting up custom dialogs](custom_dialogs.md)
+    - [Setting up dashboard](custom_dashboard.md)
+    - [Setting up Angular in your section](custom_angular.md)
+    - [Setting up backoffice controllers](custom_controllers.md)
+    - [Setting up a search result formatter](custom_searchformatter.md)
+    - [Setting up custom notifications](custom_notifications.md)
+    - [Setting up custom dialogs](custom_dialogs.md)
 6. [Multiple sections](sections.md)
 7. [Basic two factor authentication](tfa.md)
-8. ADFS / Azure AD / Azure AD B2C
+8. [Azure AD / ADFS](adfs.md)
 
 ## Sources used
 
