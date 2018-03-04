@@ -71,7 +71,7 @@ Go to your App Registration, click on Settings, then Properties. Copy the App ID
 
 ![RP](images/adfs6.png)
 
-#### Federation Server Identifier
+##### Federation Server Identifier
 
 Go to your Azure AD and click on Properties. Copy the Directory ID and replace `{id}` in the following uri:
 
