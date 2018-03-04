@@ -23,7 +23,7 @@ After installing the package, we start by replacing the default `UmbracoDefaultO
 by our own, with some changes. Start out by creating a `CustomSectionOwinStartup.cs` in
 the `Startup` folder, with two overrides. These overrides will be implemented later:
 
-``` Csharp
+```cs
 using Microsoft.Owin;
 using Owin;
 using Umbraco.Web;
@@ -74,7 +74,7 @@ After extending `UmbracoDefaultOwinStartup`, we need to do the same to the
 First, create `CustomBackOfficeUserStore.cs` in the `UserManagement` folder of our 
 custom section:
 
-``` Csharp
+```cs
 using System.Threading.Tasks;
 using Umbraco.Core.Models.Identity;
 using Umbraco.Core.Security;
@@ -125,7 +125,7 @@ all up to you.
 
 After that, create `CustomBackOfficeUserManager.cs`, also in the `UserManagement` folder:
 
-``` Csharp
+```cs
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
@@ -222,7 +222,7 @@ current user has been set up.
 To validate any 2FA codes, we need to add a `DataProtectorTokenProvider` in the shape of
 `DefaultTwoFactorProvider`. Create `DefaultTwoFactorProvider.cs` in the `TwoFactorProviders` folder:
 
-``` Csharp
+```cs
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security.DataProtection;
@@ -390,7 +390,7 @@ Do not forget to reference this javascript file in [`package.manifest`](custom_a
 We are almost done, we only need to tell Umbraco to use our stuff instead of the default, by 
 modifying `CustomSectionOwinStartup.cs`:
 
-``` Csharp
+```cs
 public class CustomSectionOwinStartup : UmbracoDefaultOwinStartup
 {
     protected override void ConfigureServices(IAppBuilder app)

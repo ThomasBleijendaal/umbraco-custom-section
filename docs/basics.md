@@ -34,7 +34,7 @@ and modify things at application start.
 
 To register a custom section to Umbraco, add the following in `CustomSection.cs`:
 
-```csharp
+```cs
 using umbraco.businesslogic;
 using umbraco.interfaces;
 

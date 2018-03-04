@@ -24,7 +24,7 @@ And for Entity Framework Core:
 We will start by updating the `CustomApplication` class, and add register
 some objects to the `ContainerBuilder`:
 
-``` Csharp
+```cs
 public void OnApplicationInitialized(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
 {
     var builder = new ContainerBuilder();
@@ -73,7 +73,7 @@ you probably want to wrap the context in some services, and offload the context 
 models to a seperate project in the same solution.) First thing we do is update the 
 `CustomTreeController`, since the menu is still hard-coded:
 
-``` Csharp
+```cs
 public class CustomTreeController : TreeController, ISearchableTree
 {
     private readonly CustomSectionDbContext _dbContext;
@@ -90,7 +90,7 @@ If we build and restart the website, the `CustomTreeController` is instantiated 
 initialized and seeded `DbContext`. We can use that object to feed the `GetTreeNodes` with
 some 'real' data:
 
-``` Csharp
+```cs
 protected override TreeNodeCollection GetTreeNodes(string id, FormDataCollection queryStrings)
 {
     var collection = new TreeNodeCollection();
@@ -129,7 +129,7 @@ In order to fix this, we need to provide a parameterless constructor and fetch t
 constructor. Or remove the non-parameterless constructor and always fetch your own
 dependencies in the constructor.
 
-``` Csharp
+```cs
 public CustomTreeController()
 {
     _dbContext = DependencyResolver.Current.GetService<CustomSectionDbContext>();
@@ -138,7 +138,7 @@ public CustomTreeController()
 
 We only have to update the `Search` method to get everything working correctly:
 
-``` Csharp
+```cs
 public IEnumerable<SearchResultItem> Search(string query, int pageSize, long pageIndex, out long totalFound, string searchFrom = null)
 {
     var results = _dbContext.Nodes.Where(n => n.Name.ToLower().Contains(query.ToLower())).ToList();

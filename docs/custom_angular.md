@@ -149,7 +149,7 @@ the section's name (`CustomSection`), after that the controller and action. This
 managed by Umbraco and automatically setup for any controller. The corresponding C# controller
 looks like this:
 
-``` Csharp
+```cs
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using System.Web.Http;
