@@ -187,5 +187,5 @@ API controller, and fully supports dependency injection and `async` methods.
 
 ## Next
 
-Next step is getting all the [backoffice controllers working](custom_controllers.md), for the various tasks. There are
-a few to choose from, and it is good to know what the differences are. 
+Next step is getting all the features in the back office working, starting with a 
+[custom search formatter](custom_searchformatter.md).

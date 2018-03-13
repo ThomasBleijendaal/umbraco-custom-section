@@ -91,10 +91,9 @@ information:
 }
 ```
 
-Keep the `editorPath` and `menuUrl` properties in mind when we set up the
-[backoffice controllers](custom_controllers.md) and [dialogs](custom_dialogs.md).
-We will update those two properties to the currect urls in order to bind everything
-together.
+## TODO
+
+Menu working.
 
 ## Next
 
