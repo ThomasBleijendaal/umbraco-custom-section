@@ -2,6 +2,7 @@
   "javascript": [
     "~/App_Plugins/CustomSection/backoffice/controllers/dashboard-controller.js",
     "~/App_Plugins/CustomSection/backoffice/services/dashboard-service.js",
+    "~/App_Plugins/CustomSection/backoffice/services/search-formatter-service.js",
     "~/App_Plugins/CustomSection/backoffice/controllers/two-factor-login-controller.js"
   ],
   "css": [

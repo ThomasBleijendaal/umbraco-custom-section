@@ -15,7 +15,7 @@ using UmbracoCustomSection.App_Plugins.CustomSection.Models;
 namespace UmbracoCustomSection.App_Plugins.CustomSection.Controllers
 {
     [Tree("customSection", "customTree", "Custom Section", iconClosed: "icon-tree", iconOpen: "icon-trophy")]
-    [SearchableTree("searchResultFormatter", "configureContentResult")]
+    [SearchableTree("customResultFormatter", "configureResult")]
     [PluginController("CustomSection")]
     public class CustomTreeController : TreeController, ISearchableTree
     {
@@ -90,6 +90,7 @@ namespace UmbracoCustomSection.App_Plugins.CustomSection.Controllers
             {
                 var item = new SearchResultItem
                 {
+                    Alias = $"{node.Name} alias",
                     Icon = GetIconForNode(node),
                     Id = node.Id,
                     Name = node.Name,

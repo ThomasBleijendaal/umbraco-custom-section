@@ -1,4 +1,6 @@
-﻿## Angular
+﻿[Back to index](index.md)
+
+## Angular
 
 In order to get our Angular controllers, directives, helpers, and anything else 
 included in the Umbraco backoffice, we need to add a manifest to the root of our 

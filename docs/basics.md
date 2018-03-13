@@ -1,4 +1,6 @@
-﻿## Basics
+﻿[Back to index](index.md)
+
+## Basics
 
 Let's start with the basics! Creating a Custom Section. We start with creating a
 folder in App_Plugins. In this folder add `CustomApplication.cs`.
@@ -41,7 +43,7 @@ using umbraco.interfaces;
 namespace UmbracoCustomSection.App_Plugins.CustomSection
 {
     [Application("customSection", "Custom Section", "icon-trophy", -1)]
-    public class ForecastSection : IApplication
+    public class CustomSection : IApplication
     {
     }
 }

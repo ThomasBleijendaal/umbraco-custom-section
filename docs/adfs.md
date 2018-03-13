@@ -1,4 +1,6 @@
-﻿## Azure AD / ADFS
+﻿[Back to index](index.md)
+
+## Azure AD / ADFS
 
 Having an integration with an external login provider can really add value
 to your application. No longer are users burdened with lots of different usernames,
@@ -244,7 +246,12 @@ existing Umbraco user, you will get the following error:
 It is not the friendliest of error messages, but you will have to log in with the Umbraco login, and then
 link your account using the button on the user sidebar. 
 
-Second, the free Azure AD offering does not allow you to modify any of the claims returned in the security
+Second, do not use the account which you used to create the Azure AD with. That account is semi-federated
+by its original AD, and often does not contain the correct information for Umbraco. I have seen accounts with
+missing names or missing e-mail addresses. So do yourself a favour and create a new user and use that one
+to test with.
+
+Third, the free Azure AD offering does not allow you to modify any of the claims returned in the security
 token. For every account except the admin account of the directory, there will be no email address in the
 security token. And Umbraco really requires it:
 
@@ -283,7 +290,7 @@ claim to serve as the `emailaddress` claim. If the external login does not even 
 If you are using Azure AD Premium, you can register an enterprise application which supports SAML based SSO. For enterprise
 applications [you can configure token attributes](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-saas-custom-apps).
 If you are using your own ADFS server, you can add [the required claim types easily](https://24days.in/umbraco-cms/2016/authenticating-with-ad-fs-and-identityextensions/)
-since you manage the configuration yourself.
+since you manage the configuration yourself. 
 
 #### Intercepting auto linking and user creation
 

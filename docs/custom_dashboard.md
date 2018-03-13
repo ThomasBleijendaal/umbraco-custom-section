@@ -1,4 +1,6 @@
-﻿## Custom Dashboard
+﻿[Back to index](index.md)
+
+## Custom Dashboard
 
 The dashboard of a section is the index of a section; it is the page the user
 lands on when they navigate to your section, or click on the root element in the

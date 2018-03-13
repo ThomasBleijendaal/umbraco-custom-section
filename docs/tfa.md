@@ -1,4 +1,6 @@
-﻿## Basic Two Factor Authentication
+﻿[Back to index](index.md)
+
+## Basic Two Factor Authentication
 
 Since Umbraco relies on Owin and ASP.NET Identity, modifying
 the login flow is relatively easy. Adding Two Factor Authentication is quite

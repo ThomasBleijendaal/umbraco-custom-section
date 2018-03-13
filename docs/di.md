@@ -1,4 +1,6 @@
-﻿## Dependency Injection
+﻿[Back to index](index.md)
+
+## Dependency Injection
 
 Getting dependency injection working in an Umbraco custom sections
 is easy. Umbraco does not force you to use a certain type of DI, so

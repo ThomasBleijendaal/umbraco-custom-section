@@ -1,4 +1,6 @@
-﻿## Custom pages
+﻿[Back to index](index.md)
+
+## Custom pages
 
 The Custom Pages chapter is divided into multipe parts, starting with the dashboard.
 The dashboard of a custom section is different compared to 'regular' custom pages,

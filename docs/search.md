@@ -1,4 +1,6 @@
-﻿## Search
+﻿[Back to index](index.md)
+
+## Search
 
 Adding support for the search bar in the Umbraco backoffice will make your custom
 section work a lot easier, as users can	quickly find stuff in your section, even

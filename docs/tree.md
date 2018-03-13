@@ -1,4 +1,6 @@
-﻿## Tree
+﻿[Back to index](index.md)
+
+## Tree
 
 In order to add functionality your custom section, you can start by adding a custom tree. 
 You can create your own tree by creating a `CustomTreeController` derived from `TreeController`. 
