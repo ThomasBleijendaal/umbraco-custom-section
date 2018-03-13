@@ -15,7 +15,7 @@ will yield:
 
 Calling:
 
-```
+```js
 notificationsService.error('Error','Lots of errors.');
 ```
 
@@ -61,9 +61,9 @@ In order to display something in this notification, add `notification.html` in t
 
 ```html
 <div class="notification"ng-controller="NotificationController as notification">
-    <h4>{{notification.heading}}</h4>
+    <h4>\{\{notification.heading\}\}</h4>
     <p>
-        {{notification.message}}
+        \{\{notification.message\}\}
     </p>
     <hr />
     <div class="buttons">
