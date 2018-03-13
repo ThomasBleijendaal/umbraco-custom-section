@@ -83,9 +83,6 @@ in the `controllers` folder (and add it to `package.manifest`), containing:
     angular.module('umbraco').controller('NotificationController', NotificationController);
 
     function NotificationController($scope, notificationsService) {
-
-        console.log($scope);
-
         this.notification = $scope.notification;
         this.notificationsService = notificationsService;
 
