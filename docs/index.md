@@ -47,7 +47,7 @@ of Umbraco. So to start, do the following:
     - [Setting up a search result formatter](custom_searchformatter.md)
     - [Setting up custom notifications](custom_notifications.md)
     - [Setting up custom dialogs](custom_dialogs.md)
-    - [Setting up backoffice controllers](custom_controllers.md)
+    - [Setting up backoffice controllers and pages](custom_controllers.md)
 6. [Multiple sections](sections.md)
 7. [Basic two factor authentication](tfa.md)
 8. [Azure AD / ADFS](adfs.md)

@@ -1,5 +1,4 @@
 ﻿[Back to index](index.md)
 
-## Backoffice controllers
+## Backoffice controllers and pages
 
-TODO
