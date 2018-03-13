@@ -61,9 +61,9 @@ In order to display something in this notification, add `notification.html` in t
 
 ```html
 <div class="notification"ng-controller="NotificationController as notification">
-    <h4>\{\{notification.heading\}\}</h4>
+    <h4>{% raw %}{{notification.heading}}{% endraw %}</h4>
     <p>
-        \{\{notification.message\}\}
+        {% raw %}{{notification.message}}{% endraw %}
     </p>
     <hr />
     <div class="buttons">
