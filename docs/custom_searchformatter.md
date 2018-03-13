@@ -48,9 +48,9 @@ the following code (don't forget adding it to `package.manifest`):
 
 ```js
 function resultFormatter(umbRequestHelper) {
-    
+
     function configureResult(content, treeAlias, appAlias) {
-        content.menuUrl = umbRequestHelper.getApiUrl("contentTreeBaseUrl", "GetMenu", [{ id: content.id }, { application: appAlias }]);
+        content.menuUrl = "/umbraco/backoffice/" + appAlias + "/" + treeAlias + "/GetMenu?id=" + content.id + "&application=" + appAlias + "&tree=&isDialog=false";
         content.editorPath = appAlias + "/" + treeAlias + "/edit/" + content.id;
         angular.extend(content.metaData, { treeAlias: treeAlias });
         content.subTitle = content.alias;
@@ -65,7 +65,8 @@ angular.module('umbraco.services').factory('customResultFormatter', resultFormat
 ```
 
 This is a slight modification of [the original formatter](https://github.com/umbraco/Umbraco-CMS/blob/e0025db56d52b770d2b3aedbd48a3b804fd15ef0/src/Umbraco.Web.UI.Client/src/common/services/searchresultformatter.service.js#L9),
-and uses the `alias` as sub title instead of `metaData.Url`:
+and uses the `alias` as sub title instead of `metaData.Url`. It also defines the `menuUrl`
+differently, so it works correctly with the context menu's of the custom tree we built previously.
 
 ![Formatted](images/search2.png)
 
@@ -90,10 +91,6 @@ information:
     udi: null
 }
 ```
-
-## TODO
-
-Menu working.
 
 ## Next
 

@@ -53,9 +53,7 @@ namespace UmbracoCustomSection.App_Plugins.CustomSection.Controllers
 
             return collection;
         }
-
-
-
+        
         protected override MenuItemCollection GetMenuForNode(string id, FormDataCollection queryStrings)
         {
             var collection = new MenuItemCollection();
