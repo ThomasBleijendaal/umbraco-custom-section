@@ -131,7 +131,7 @@ protected override MenuItemCollection GetMenuForNode(string id, FormDataCollecti
     }
     else if(id.Length == 1)
     {
-        collection.Items.Add<ActionSort>("Custom Sort").LaunchDialogView("/App_Plugins/CustomSection/backoffice/customTree/dialog.html", "Custom Dialog");
+        collection.Items.Add<ActionSort>("Custom Sort").LaunchDialogView("/App_Plugins/CustomSection/backoffice/dialogs/sort.html", "Custom Dialog");
     }
     else if(id.Length == 2)
     {

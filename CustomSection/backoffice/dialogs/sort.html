@@ -1,0 +1,11 @@
+﻿<div class="umb-dialog umb-pane" ng-controller="SortController as controller">
+    <h1>{{controller.header}}</h1>
+
+    <ul>
+        <li ng-repeat="node in controller.nodes track by $index">{{node.Name}}</li>
+    </ul>
+
+    <hr />
+
+    <button class="btn btn-primary" ng-click="controller.save()">Save</button>
+</div>

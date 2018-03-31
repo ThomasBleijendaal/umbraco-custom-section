@@ -53,7 +53,7 @@ namespace UmbracoCustomSection.App_Plugins.CustomSection.Controllers
 
             return collection;
         }
-        
+
         protected override MenuItemCollection GetMenuForNode(string id, FormDataCollection queryStrings)
         {
             var collection = new MenuItemCollection();
@@ -64,13 +64,18 @@ namespace UmbracoCustomSection.App_Plugins.CustomSection.Controllers
                 item.NavigateToRoute("/some/route");
                 collection.Items.Add(item);
             }
-            else if (id.Length == 1)
+            else if (int.TryParse(id, out var nodeId))
             {
-                collection.Items.Add<ActionSort>("Custom Sort").LaunchDialogView("/App_Plugins/CustomSection/backoffice/customTree/dialog.html", "Custom Dialog");
-            }
-            else if (id.Length == 2)
-            {
-                collection.Items.Add<ActionNew>("Create").NavigateToRoute("/customSection/customTree/customPage/edit");
+                var node = _dbContext.Nodes.Include(n => n.ParentNode).Include(n => n.SubNodes).First(n => n.Id == nodeId);
+
+                if(node.ParentNode == null)
+                {
+                    collection.Items.Add<ActionSort>("Custom Sort").LaunchDialogView("/App_Plugins/CustomSection/backoffice/dialogs/sort.html", "Custom Dialog");
+                }
+                else
+                {
+                    collection.Items.Add<ActionNew>("Create").NavigateToRoute("/customSection/customTree/customPage/edit");
+                }
             }
 
             collection.Items.Add<ActionRefresh>("Reload", true);
