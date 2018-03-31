@@ -48,7 +48,8 @@ namespace UmbracoCustomSection.App_Plugins.CustomSection.Controllers
                         queryStrings,
                         node.Name,
                         GetIconForNode(node),
-                        node.SubNodes?.Any() ?? false)));
+                        node.SubNodes?.Any() ?? false,
+                        $"customSection/customTree/edit/{node.Id}")));
             }
 
             return collection;
@@ -74,7 +75,7 @@ namespace UmbracoCustomSection.App_Plugins.CustomSection.Controllers
                 }
                 else
                 {
-                    collection.Items.Add<ActionNew>("Create").NavigateToRoute("/customSection/customTree/customPage/edit");
+                    collection.Items.Add<ActionNew>("Create").NavigateToRoute("/CustomSection/backoffice/views/edit");
                 }
             }
 
