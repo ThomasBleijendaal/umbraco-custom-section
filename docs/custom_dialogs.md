@@ -2,7 +2,7 @@
 
 ## Dialogs
 
-Getting dialogs working with custom pages is quite similair to regular pages. First,
+Getting dialogs working with custom content is quite similair to regular pages. First,
 we have to instruct Umbraco to load a certain view. Recall that we configured the `TreeController` 
 as follows:
 
@@ -61,9 +61,9 @@ code in the file:
 
 Refreshing Umbraco will yield the following when you click on `Sort` in Item 1's context menu:
 
-![Custom dialog](imges/dialog.png)
+![Custom dialog](images/dialog1.png)
  
- To add data to the dialog you first have to add a service, called `sort-service.js` to the `services` folder,
+ To add data to the dialog you first have to add a service, `sort-service.js`, to the `services` folder,
  and add the following code:
 
  ```js
@@ -137,8 +137,8 @@ Update `sort.html`:
 ```
 
 Using `$scope.dialogOptions.currentNode` you can get the current selected node for which the 
-dialog has been opened. `treeService` lets you interface with the tree, and `navigationService` allows
-you close the dialog.
+dialog has been opened. `treeService` lets you interface with the navigational tree, and `navigationService` allows
+you to do things like closing the dialog.
 
 To have something answering to the `url` defined in the `sort-service`, add the following BackOffice
 controller:
@@ -183,4 +183,6 @@ Rebuild Umbraco and restart the site, you should see something similair to this:
 
 So that is it, this is how you can add custom dialogs to Umbraco. Offcourse, the demonstrated dialog
 is not very usefull yet and does not really do anything, but from this basis you can add your own drag and drop
-library, implement a save function and API call to the back end.
+library, and implement a working save method and corresponding API controller.
+
+Next, we will [be creating a working edit page](custom_controllers.md), using quite similair techniques. 
