@@ -60,23 +60,31 @@ basic and simplistic for that.
 7. [Basic two factor authentication](tfa.md)
 8. [Azure AD / ADFS](adfs.md)
 
-## Sources used
+### 4. Sources used
 
-### Umbraco icons
+#### Umbraco icons
 - [https://nicbell.github.io/ucreate/icons.html](https://nicbell.github.io/ucreate/icons.html)
 
-### Custom section
+#### Custom section
 - [http://skrift.io/articles/archive/sections-and-trees-in-umbraco-7/](http://skrift.io/articles/archive/sections-and-trees-in-umbraco-7/)
 - [http://www.enkelmedia.se/blogg/2013/11/22/creating-custom-sections-in-umbraco-7-part-1.aspx](http://www.enkelmedia.se/blogg/2013/11/22/creating-custom-sections-in-umbraco-7-part-1.aspx)
 - [https://github.com/kgiszewski/LearnUmbraco7/tree/master/Chapter%2016%20-%20Custom%20Sections%2C%20Trees%20and%20Actions](https://github.com/kgiszewski/LearnUmbraco7/tree/master/Chapter%2016%20-%20Custom%20Sections%2C%20Trees%20and%20Actions)
 
-### 2FA login flow
+#### 2FA login flow
 - [https://github.com/Offroadcode/Umbraco-2FA](https://github.com/Offroadcode/Umbraco-2FA)
 
-### ADFS
+#### ADFS
 - [https://24days.in/umbraco-cms/2016/authenticating-with-ad-fs-and-identityextensions/](https://24days.in/umbraco-cms/2016/authenticating-with-ad-fs-and-identityextensions/)
 - [https://our.umbraco.org/documentation/Reference/Security/](https://our.umbraco.org/documentation/Reference/Security/)
 - [https://our.umbraco.org/forum/extending-umbraco-and-using-the-api/79201-account-auto-linking-not-working-with-owin-ad-fsws-federation-authentication](https://our.umbraco.org/forum/extending-umbraco-and-using-the-api/79201-account-auto-linking-not-working-with-owin-ad-fsws-federation-authentication)
 - [https://github.com/umbraco/Umbraco-CMS/tree/release-7.7.6](https://github.com/umbraco/Umbraco-CMS/tree/release-7.7.6)
 - [https://chris.59north.com/post/Manually-configuring-OWIN-WS-Federation-middleware-and-accepting-encrypted-tokens](https://chris.59north.com/post/Manually-configuring-OWIN-WS-Federation-middleware-and-accepting-encrypted-tokens)
 - [https://chris.59north.com/post/Configuring-an-ASPNET-site-to-use-WS-Federation](https://chris.59north.com/post/Configuring-an-ASPNET-site-to-use-WS-Federation)
+
+### 5. Contributing
+
+If you see something incorrect, please submit a pull request and I will have it fixed. 
+
+---
+
+Last update: 2018-04-02
