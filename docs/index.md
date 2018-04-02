@@ -9,7 +9,7 @@ custom section will contain the following features:
 - AzureAD / ADFS
 - Two factor authentication
 
-It has been developed for and tested on Umbraco 7.7 - 7.9.
+It has been developed for and tested on Umbraco 7.7 - 7.10.
 
 ### 1. How to install
 
@@ -36,7 +36,14 @@ of Umbraco. So to start, do the following:
     - [Basic two factor authentication](tfa.md)
     - [Azure AD / ADFS](adfs.md)
 
-### 2. Table of contents
+### 2. Use of example code
+
+Although it is perfectly fine to use every bit of example code shown in this repository,
+please keep in mind that most examples are for demonstrating how to use a feature
+of Umbraco, and do not really showcase good application design. They are simple too
+basic and simplistic for that.
+
+### 3. Table of contents
 
 1. [Basics](basics.md)
 2. [Custom Tree](tree.md)
