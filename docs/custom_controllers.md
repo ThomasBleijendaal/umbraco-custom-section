@@ -1,4 +1,4 @@
-﻿[Back to index](index.md)
+﻿[Back to custom pages overview](custom.md)
 
 ## Backoffice controllers and pages
 
@@ -37,10 +37,10 @@ protected override TreeNodeCollection GetTreeNodes(string id, FormDataCollection
 
 The `RoutePath` is build up by combining the app alias (`customSection`), the tree alias (`customTree`), and
 the name of the page in the `customTree` folder. This path will point to the to-be-created `edit.html` in
-the folder `customTree`. Do to the way the tree is working in Umbraco 7.x, it is not possible to get these pages 
+the folder `customTree`. Due to the way the tree is working in Umbraco 7.x, it is not possible to get these pages 
 into the `views` folder as with the dashboards.
 
-The contents for `edit.html` are for now:
+The contents for `edit.html`, for now, are:
 
 ```html
 <div ng-controller="EditController as controller">
@@ -233,7 +233,7 @@ Update `edit-controller.js` with the following code:
 ```
 
 So lots of changes. Let's discuss a few of them. First, I use the `nodeService` to fetch a `Node` from
-the backend, in order to put its name into the textfield. Send, I walk over all `ParentNode`s to get an
+the backend, in order to put its name into the textfield. Then, I walk over all `ParentNode`s to get an
 array of ids to feed to the `navigationService`s `syncTree` method. This updates the tree and highlights the
 corresponding tree element like this:
 
@@ -346,30 +346,7 @@ node:
 
     function NodeService($http, $q) {
         return {
-            getNode: function (id) {
-                var url = 'backoffice/CustomSection/Node/GetNode?id=' + id;
-
-                return $http.get(url)
-                    .then(
-                    function (response) {
-                        return response.data;
-                    },
-                    function (error) {
-                        return $q.reject(error);
-                    });
-            },
-            saveNode: function (id, node) {
-                var url = 'backoffice/CustomSection/Node/SaveNode';
-
-                return $http.post(url, node)
-                    .then(
-                    function (response) {
-                        return true;
-                    },
-                    function (error) {
-                        return $q.reject(error);
-                    });
-            },
+            // [..]
             createNode: function (id, node) {
                 var url = 'backoffice/CustomSection/Node/CreateNode';
 
@@ -410,26 +387,7 @@ namespace UmbracoCustomSection.App_Plugins.CustomSection.Controllers
             _dbContext = dbContext;
         }
 
-        [HttpGet]
-        public async Task<NodeViewModel> GetNode(int id)
-        {
-            var node = await _dbContext.Nodes
-                .Include(n => n.ParentNode).ThenInclude(n => n.ParentNode)
-                .FirstOrDefaultAsync(n => n.Id == id);
-
-            return node.Map<Node, NodeViewModel>();
-        }
-
-        [HttpPost]
-        public async Task SaveNode(NodeViewModel model)
-        {
-            var node = await _dbContext.Nodes.FirstAsync(n => n.Id == model.Id);
-
-            node.Name = model.Name;
-
-            _dbContext.Update(node);
-            await _dbContext.SaveChangesAsync();
-        }
+        // [..]
 
         [HttpPost]
         public async Task<NodeViewModel> CreateNode(NodeViewModel model)
@@ -462,9 +420,9 @@ After rebuilding and refreshing Umbraco, we can click on Create to create a new 
 Now that this is working all correctly, we can reflect a bit on how some of the examples I have
 shown. I have tried to demonstrate how to do various things in Umbraco, to make them work with Umbraco,
 and how to use some of the features Umbraco provides. But most of these examples are very basic and
-simplistic and not the best practices when building an application in Angular or ASP.NET. It was also
-not really my goal of demonstrating best practices, but more get you started with custom pages in 
-Umbraco, and not cloud the examples with a lot of Angular and ASP.NET boilerplate. 
+simplistic and are not the best practices when building an application in Angular and ASP.NET. It was
+not really my goal to demonstrate best practices, but more get you started with custom pages in 
+Umbraco, and not to cloud the examples with a lot of Angular and ASP.NET boilerplate. 
 
 That said, let's continue with the last few chapters, starting with [multiple custom sections](sections.md)
 in Umbraco, and then improving the login flow using [2FA](tfa.md) and [Azure AD](adfs.md). 

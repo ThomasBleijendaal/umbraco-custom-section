@@ -1,9 +1,9 @@
-﻿[Back to index](index.md)
+﻿[Back to custom pages overview](custom.md)
 
 ## Search formatter
 
-Having Angular setup correctly, it is quite easy to add your own search
-formatter. 
+After having Angular setup correctly, adding your own search
+formatter is quite easy. 
 
 First, add update the `CustomTreeController`s `SearchableTree` attribute:
 

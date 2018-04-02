@@ -172,5 +172,5 @@ Rebuilding the application will result in the following:
 ## Next
 
 Now that we have DI working, we can really start building some real functionality. Next thing to do
-is to start with the custom pages, to make our custom section usefull and provide the user
+is [to start with the custom pages](custom.md), to make our custom section usefull and provide the user
 with some real UI.

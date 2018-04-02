@@ -97,7 +97,7 @@ CreateTreeNode(string id, string parentId, FormDataCollection queryStrings, stri
 ```
 
 The most usefull arguments are `title` and `icon`, which is used on the menu item, and `hasChildren`, which determines
-if a little arrow must be drawn in front of the menu item. Note that toe third level menu items in the previous screenshot
+if a little arrow must be drawn in front of the menu item. Note that the third level menu items in the previous screenshot
 do not have such an arrow. 
 
 There is also an overload which taks the following arguments:
@@ -147,18 +147,18 @@ protected override MenuItemCollection GetMenuForNode(string id, FormDataCollecti
 ![Hardcoded menu](images/tree4.png)
 
 As you can see, you can add completely custom `MenuItem`s, lauch custom dialogs, navigate to routes, or refresh
-the tree node list. There are quite a few `Action`s available, and you can create custom Actions aswell. The
+the tree node list. There are [quite a few `Action`s available](https://github.com/kgiszewski/LearnUmbraco7/tree/master/Chapter%2016%20-%20Custom%20Sections%2C%20Trees%20and%20Actions), and you can create custom Actions aswell. The
 `NavigateToRoute` and `LaunchDialogView` are discussed in the Custom Pages chapter, as they required the same
 setup as a custom page. 
 
 ## Next
 
 Now that we have a basic implementation of our TreeController, we can almost start with creating some 
-custom pages and add some functionality to our custom section. But first, we need to register our tree
-as `SearchableTree` to have the search box above the tree also search in our section:
+custom pages and add some functionality to our custom section. But first, we need to [register our tree as `SearchableTree`](search.md) 
+to have the search box above the tree also search in our section:
 
 ![Search](images/tree5.png)
 
-And we have to get our Dependency Injection working, so we can really start using some services and start
+And we have to get our [Dependency Injection](di.md) working, so we can really start using some services and start
 talking to a database. And getting Entity Framework Core working inside Umbraco can be a bit of a hassle,
 so that needs to be taken care of first.

@@ -1,4 +1,4 @@
-﻿[Back to index](index.md)
+﻿[Back to custom pages overview](custom.md)
 
 ## Angular
 
@@ -65,7 +65,7 @@ module in javascript, and reference the controller in your html view using `ng-c
 ``` html
 <div ng-controller="DashboardController as dashboard">
     <h1>Dashboard!</h1>
-    <p>Total nodes: {{dashboard.nodeCount}}.</p>
+    <p>Total nodes: {% raw %}{{dashboard.nodeCount}}{% endraw %}.</p>
 </div>
 ```
 

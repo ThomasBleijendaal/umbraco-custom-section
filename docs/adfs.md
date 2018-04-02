@@ -243,7 +243,8 @@ existing Umbraco user, you will get the following error:
 
 ![Duplicate email](images/adfs10.png)
 
-It is not the friendliest of error messages, but you will have to log in with the Umbraco login, and then
+It is not the friendliest of error messages since it displays the STS url instead of the human readable name of
+the external login provider, but you will have to log in with the Umbraco login, and then
 link your account using the button on the user sidebar. 
 
 Second, do not use the account which you used to create the Azure AD with. That account is semi-federated

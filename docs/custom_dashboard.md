@@ -1,4 +1,4 @@
-﻿[Back to index](index.md)
+﻿[Back to custom pages overview](custom.md)
 
 ## Custom Dashboard
 

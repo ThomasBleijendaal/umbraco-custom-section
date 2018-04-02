@@ -113,5 +113,5 @@ everything will work correctly. In the Custom Section chapter I will demonstrate
 
 ## Next
 
-Next we will implement DI to make our custom section's backend work just like a regular
+Next we will [implement DI](di.md) to make our custom section's backend work just like a regular
 WebApi application.
