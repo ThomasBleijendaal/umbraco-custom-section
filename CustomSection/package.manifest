@@ -9,7 +9,8 @@
     "~/App_Plugins/CustomSection/backoffice/controllers/sort-controller.js",
     "~/App_Plugins/CustomSection/backoffice/services/sort-service.js",
 
-    "~/App_Plugins/CustomSection/backoffice/controllers/edit-controller.js"
+    "~/App_Plugins/CustomSection/backoffice/controllers/edit-controller.js",
+    "~/App_Plugins/CustomSection/backoffice/services/node-service.js"
   ],
   "css": [
     "~/App_Plugins/CustomSection/backoffice/assets/dashboard.css"

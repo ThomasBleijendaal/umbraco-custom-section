@@ -23,7 +23,7 @@ protected override MenuItemCollection GetMenuForNode(string id, FormDataCollecti
     }
     else if(id.Length == 2)
     {
-        collection.Items.Add<ActionNew>("Create").NavigateToRoute("/customSection/customTree/customPage/edit");
+        collection.Items.Add<ActionNew>("Create").NavigateToRoute($"/customSection/customTree/edit/new-{node.Id}");
     }
 
     collection.Items.Add<ActionRefresh>("Reload", true);

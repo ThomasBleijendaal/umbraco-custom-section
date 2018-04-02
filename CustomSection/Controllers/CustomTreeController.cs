@@ -75,7 +75,7 @@ namespace UmbracoCustomSection.App_Plugins.CustomSection.Controllers
                 }
                 else
                 {
-                    collection.Items.Add<ActionNew>("Create").NavigateToRoute("/CustomSection/backoffice/views/edit");
+                    collection.Items.Add<ActionNew>("Create").NavigateToRoute($"/customSection/customTree/edit/new-{node.Id}");
                 }
             }
 

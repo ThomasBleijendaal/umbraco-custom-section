@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
+using ExpressMapper;
 using Microsoft.EntityFrameworkCore;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -8,6 +9,8 @@ using Umbraco.Core;
 using Umbraco.Web;
 using UmbracoCustomSection.App_Plugins.CustomSection.Controllers;
 using UmbracoCustomSection.App_Plugins.CustomSection.Data;
+using UmbracoCustomSection.App_Plugins.CustomSection.Models;
+using UmbracoCustomSection.App_Plugins.CustomSection.ViewModels;
 
 namespace UmbracoCustomSection.App_Plugins.CustomSection
 {
@@ -49,6 +52,9 @@ namespace UmbracoCustomSection.App_Plugins.CustomSection
         public void OnApplicationStarted(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
         {
             // this is where you can setup things when the application starts
+            
+            Mapper.Register<Node, NodeViewModel>();
+            Mapper.Compile();
         }
 
         public void OnApplicationStarting(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)

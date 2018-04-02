@@ -20,6 +20,7 @@ of Umbraco. So to start, do the following:
 2. Add UmbracoCms nuget package.    
 3. Clone this repository into the App_Plugins folder. Let ModelsBuilder be. Include all the files from this repository into your Umbraco-csproj.
 4. Add the following nuget packages:
+    - ExpressMapper
     - Microsoft.EntityFrameworkCore
     - Microsoft.EntityFrameworkCore.InMemory
     - Microsoft.EntityFrameworkCore.Relational
